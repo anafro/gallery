@@ -1,0 +1,8 @@
+body {
+    margin: 0;
+}
+
+*::selection {
+    background-color: #7D4BF3;
+    color: white;
+}
