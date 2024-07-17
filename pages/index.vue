@@ -33,16 +33,19 @@ onMounted(() => {
         </header>
         
         <section id="gallery">
-            <GalleryCard v-for="route of gallery.files" :route :name="route" description="Компания, занимающаяся разработкой программного обеспечения для летучих мышей и альпийских коров с высоким уровнем интеллекта" />
-            <GalleryCard v-for="route of gallery.files" :route :name="route" description="Компания, занимающаяся разработкой программного обеспечения для летучих мышей и альпийских коров с высоким уровнем интеллекта" />
-            <GalleryCard v-for="route of gallery.files" :route :name="route" description="Компания, занимающаяся разработкой программного обеспечения для летучих мышей и альпийских коров с высоким уровнем интеллекта" />
-            <GalleryCard v-for="route of gallery.files" :route :name="route" description="Компания, занимающаяся разработкой программного обеспечения для летучих мышей и альпийских коров с высоким уровнем интеллекта" />
-            <GalleryCard v-for="route of gallery.files" :route :name="route" description="Компания, занимающаяся разработкой программного обеспечения для летучих мышей и альпийских коров с высоким уровнем интеллекта" />
+            <GalleryCard
+                v-for="page of gallery.pages"
+                v-bind="page"
+            />
         </section>
     </div>
 </template>
 
 <style scoped lang="sass">
+*::selection
+    background-color: $lovely-purple
+    color: white
+
 #index
     min-height: 100vh
     background-image: radial-gradient(ellipse farthest-corner at 50% 0%, mix($gentle-purple, $darken-purple, 50%) 0%, $darken-purple 70%, $darken-purple 100%)

@@ -11,7 +11,7 @@ const props = defineProps<{
 </script>
 
 <template>
-<div class="gallery__card">
+<div class="gallery__card" @click="navigateTo(`/${route}`)">
     <div class="gallery__card-image-container">
         <div class="gallery__card-image">
             <div class="gallery__card-image-ui">
@@ -48,7 +48,7 @@ const props = defineProps<{
     outline: 0.5em solid transparentize($yogurt-purple, 0.80)
     background: radial-gradient(ellipse farthest-corner at 60% 100%, transparentize($lovely-purple, 0.40) 0%, transparentize($lovely-purple, 0.90) 100%)
     transform: scale(1.05)
-    filter: drop-shadow(0 0.125em 2em transparentize($yogurt-purple, 0.30))
+    filter: drop-shadow(0 0.25em 2em transparentize($yogurt-purple, 0.30))
     transition: 125ms cubic-bezier(.55,-0.21,0,1.01)
     
     .gallery__card-image-filter
@@ -58,6 +58,12 @@ const props = defineProps<{
         transition: all 175ms ease-out, transform 3500ms cubic-bezier(.55,-0.21,0,1.01)
         opacity: 1
         transform: rotateY(-15deg) scale(1.05) translateX(-25%) translateY(-80%)
+        
+    .gallery__card-name
+        text-shadow: 0 0 0.5em white
+        
+    .gallery__card-description
+        opacity: 1
         
 .gallery__card:active
     outline: 0.25em solid $yogurt-purple
@@ -74,9 +80,9 @@ const props = defineProps<{
         transform: rotateY(-5deg) scale(0.5) translateX(-25%) translateY(-80%)
 
 .gallery__card-image-container
-    max-height: 24em
     overflow: hidden
     width: 100%
+    height: 24em
     position: relative
     perspective: 300px
     background: $robust-purple
@@ -100,6 +106,7 @@ const props = defineProps<{
 .gallery__card-screenshot
     width: 100%
     background: white
+    margin-top: 1em
     
 .gallery__card-image-ui
     position: absolute
