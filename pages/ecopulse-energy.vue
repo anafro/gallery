@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+    title: "EcoPulse Energy™ • Почувствуй энергию ветра — Галерея сайтов Анатолия Фролова",
+})
+
 
 import GalleryPageTemplate from "~/components/templates/GalleryPageTemplate.vue";
 import WindPowerIcon from "~/components/ecopulse-energy/WindPowerIcon.vue";
