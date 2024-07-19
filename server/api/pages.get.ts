@@ -14,11 +14,11 @@ export type GetPages = {
 export default defineEventHandler(async (_: H3Event): Promise<GetPages> => { 
     return {
         pages: [
-            // {
-            //     route: 'nebula-nav',
-            //     name: 'Nebula Nav',
-            //     description: 'Разработка инновационных решений для навигации и ориентирования в космосе.',
-            // },
+            {
+                route: 'nebula-nav',
+                name: 'Nebula Nav',
+                description: 'Организация и проведение космических туров по Солнечной системе.',
+            },
             // {
             //     route: 'gourmet-garden',
             //     name: 'Gourmet Garden',
