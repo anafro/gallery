@@ -69,18 +69,18 @@ import WindPowerIcon from "~/components/ecopulse-energy/WindPowerIcon.vue";
         
         <div id="landing__show-off-container">
             <section id="landing__show-off">
+                <img id="landing__show-off-image" src="/ecopulse-energy/wind-power-in-sea.png" alt="Image Not Found">
                 <span id="landing__show-off-call-out" class="call-out">От Мурманска до Петропавловска-Камчатского!</span>
                 <h2 id="landing__show-off-title">
                     Мы уже установили 6 миллионов<br>
                     ветряных генераторов в России!
                 </h2>
                 <span id="landing__show-off-text">
-                У нас были заказы от небольших компаний,<br>
-                частных предпринимателей и даже от мировых корпораций.<br>
-                Мы сможем найти что-то и для Вас!
-            </span>
+                    У нас были заказы от небольших компаний,<br>
+                    частных предпринимателей и даже от мировых корпораций.<br>
+                    Мы сможем найти что-то и для Вас!
+                </span>
                 <button id="landing__show-off-cta">Заказать звонок</button>
-                <img id="landing__show-off-image" src="/ecopulse-energy/wind-power-in-sea.png" alt="Image Not Found">
             </section>
         </div>
         
@@ -98,7 +98,7 @@ import WindPowerIcon from "~/components/ecopulse-energy/WindPowerIcon.vue";
             </div>
             <div id="footer__right">
                 EcoPulse Energy&trade; не является настоящей компанией!
-                Я её выдумал, чтобы сделать для неё эту посадочную страницу
+                Я её выдумал, чтобы сделать для неё эту посадочную страницу.
                 <a href="/" id="footer__to-gallery-link">Посмотрите и другие мои работы!</a>
             </div>
         </footer>
@@ -155,7 +155,7 @@ button
     background-image: url('/ecopulse-energy/wind-power-on-land.png')
     background-repeat: no-repeat
     background-size: cover
-    height: 80vh
+    min-height: 80vh
     overflow: hidden
     border-radius: 2em
     padding-block: 2em
@@ -198,7 +198,7 @@ h1
     font-weight: 300
     
 #landing__features
-    height: 100vh
+    min-height: 100vh
     display: flex
     align-items: center
     justify-content: center
@@ -311,13 +311,14 @@ h2
         transform: translateX(25%)
     
 #landing__show-off
-    height: 100vh
+    min-height: 100vh
     display: flex
     align-items: flex-start
     justify-content: center
     flex-direction: column
     row-gap: 2em
     position: relative
+    margin-block: 4em
     
 #landing__show-off-container
     overflow-x: hidden
@@ -351,6 +352,7 @@ footer
     bottom: 0
     opacity: 0.05
     width: 32em
+    pointer-events: none
     
 #footer__logo
     color: white
@@ -402,6 +404,7 @@ footer
     
     #landing__main-wind-power
         display: inline-block
+        width: 4em
         
 @media (width <= 1150px)
     header, section
@@ -409,6 +412,15 @@ footer
         
     footer
         padding-inline: 2em
+    
+    #landing__show-off-image
+        top: 25%
+        right: -6em
+        width: 16em
+        filter: none
+        
+    #landing__main
+        background: linear-gradient(#638F3733, #0182A433), url("/ecopulse-energy/wind-power-on-land-mirrored.png")
         
 @media (width <= 900px)
     #header__menu
@@ -417,18 +429,13 @@ footer
     #landing__main-wind-power
         width: 6em
         
-    #landing__show-off-image
-        top: 25%
-        right: -6em
-        width: 16em
-        
     h1
         font-size: 3em
         
     .landing__feature-card-value
         font-size: 3em
   
-@media (width <= 700px)
+@media (width <= 800px)
     .landing__feature-card
         padding-inline: 0.5em
     
@@ -438,13 +445,19 @@ footer
         text-align: center
         
     #landing__show-off-image
-        top: 5%
-        left: 50%
-        transform: translateX(-50%)
-        filter: none
-        width: 8em
+        position: static
+        transform: none
+        width: 12em
+    
+    #landing__main-text
+        display: none
         
 @media (width <= 500px)
+    #landing__main
+        margin-inline: 0
+        border-radius: 0
+        padding-inline: 0.5em
+    
     h1
         font-size: 2em
         
@@ -464,10 +477,17 @@ footer
     .landing__feature-card
         padding: 4em
         flex-basis: 8em
+        filter: none !important
         
     .landing__feature-card-value
         font-size: 2em
         
-    #landing__main-text
-        display: none
+    #landing__features
+        margin-block: 8em
+    
+    #landing__show-off-image
+        width: 6em
+        
+    .landing__ticker-line
+        font-size: 3em
 </style>
