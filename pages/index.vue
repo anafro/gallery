@@ -220,6 +220,13 @@ h2
     #header__logo-text-container
         display: none
         
+@media (width <= 500px)
+    #gallery
+        padding-block: 3em
+        
+    header, #gallery
+        padding-inline: 1.5em
+        
 @media (width <= 400px)
     #header__order-button-icon
         display: none

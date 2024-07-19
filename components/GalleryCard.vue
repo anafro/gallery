@@ -177,4 +177,46 @@ const props = defineProps<{
     color: white
     font-weight: 100
     opacity: 0.80
+    
+@media (width <= 700px)
+    .gallery__card-text-container
+        padding-inline: 0.5em
+    
+    .gallery__card-image
+        animation: gallery__card-image__mobile-scroll 10000ms infinite cubic-bezier(.71,-0.12,.35,.99)
+        
+    @keyframes gallery__card-image__mobile-scroll
+        0%
+            transform: scale(0.9) translateY(5%)
+            
+        50%
+            transform: scale(0.8) translateY(-80%)
+            
+        100%
+            transform: scale(0.9) translateY(5%)
+    
+    .gallery__card-image-container
+        overflow: hidden
+        width: 100%
+        height: 12em
+        
+    .gallery__card-image-filter
+        opacity: 0
+    
+    .gallery__card:hover
+        outline: unset
+        transform: scale(1)
+        filter: drop-shadow(0 0.25em 2em transparentize($yogurt-purple, 0.30))
+        transition: 125ms cubic-bezier(.55,-0.21,0,1.01)
+        
+        .gallery__card-image
+            transition: all 175ms ease-out, transform 3500ms cubic-bezier(.55,-0.21,0,1.01)
+            opacity: 1
+            transform: none
+        
+        .gallery__card-name
+            text-shadow: 0 0 0.5em white
+        
+        .gallery__card-description
+            opacity: 1
 </style>
