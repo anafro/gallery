@@ -183,17 +183,15 @@ h2
         font-family: "Bad Script", sans-serif
         
 #gallery
-    display: flex
-    flex-wrap: wrap
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    row-gap: 6em
+    column-gap: 3em
     padding-inline: 3em
     align-items: center
     justify-content: space-between
-    row-gap: 6em
     padding-block: 8em
     animation: gallery__fade-in 1000ms cubic-bezier(.89,-0.36,.01,1.23)
-    
-    > *
-        width: 29vw
 
 @keyframes gallery__fade-in
     0%
@@ -205,16 +203,12 @@ h2
         transform: translateY(0)
         
 @media (width <= 1700px)
-    #gallery > *
-        width: 28vw
-        
-@media (width <= 1500px)
-    #gallery > *
-        width: 43vw
+    #gallery
+        grid-template-columns: repeat(2, 1fr)
         
 @media (width <= 900px)
-    #gallery > *
-        width: 100%
+    #gallery
+        grid-template-columns: 1fr
         
 @media (width <= 700px)
     #header__logo-text-container
