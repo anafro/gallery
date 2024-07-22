@@ -22,12 +22,12 @@ export default defineEventHandler(async (_: H3Event): Promise<GetPages> => {
                 description: 'Лидер в области разработки и внедрения возобновляемых источников энергии.',
                 category: 'Лендинг',
             },
-            {
-                route: 'nebula-nav',
-                name: 'Nebula Nav',
-                description: 'Организация и проведение космических туров по Солнечной системе.',
-                category: 'Лендинг',
-            },
+            // {
+            //     route: 'nebula-nav',
+            //     name: 'Nebula Nav',
+            //     description: 'Организация и проведение космических туров по Солнечной системе.',
+            //     category: 'Лендинг',
+            // },
             {
                 route: 'sakurator',
                 link: 'https://sakurator.anafro.ru/',
