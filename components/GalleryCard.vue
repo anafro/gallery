@@ -4,14 +4,16 @@ import type {Ref} from "vue";
 
 const props = defineProps<{
     route: string,
+    link?: string,
     name: string,
     description: string,
+    category: string,
 }>();
 
 </script>
 
 <template>
-<div class="gallery__card" @click="navigateTo(`/${route}`)">
+<div class="gallery__card" @click="navigateTo(link ?? `/${route}`, {external: link !== undefined})">
     <div class="gallery__card-image-container">
         <div class="gallery__card-image">
             <div class="gallery__card-image-ui">
@@ -24,6 +26,7 @@ const props = defineProps<{
         <div class="gallery__card-image-filter"></div>
     </div>
     <div class="gallery__card-text-container">
+        <span class="gallery__card-category">{{ category }}</span>
         <h3 class="gallery__card-name">{{ name }}</h3>
         <span class="gallery__card-description">{{ description }}</span>
     </div>
@@ -33,21 +36,20 @@ const props = defineProps<{
 <style scoped lang="sass">
 .gallery__card
     display: flex
-    align-items: center
     flex-direction: column
     background: radial-gradient(ellipse farthest-corner at 50% 100%, transparentize($lovely-purple, 0.60) 0%, transparentize($lovely-purple, 0.90) 100%)
     border-radius: 0.75em
     user-select: none
     overflow-y: hidden
     cursor: pointer
-    transition: 175ms ease-out
+    transition: 1000ms ease-out
     border-bottom: 2px solid $gentle-purple
     box-shadow: inset 0 0 3em transparentize($yogurt-purple, 0.80)
 
 .gallery__card:hover
     outline: 0.5em solid transparentize($yogurt-purple, 0.80)
     background: radial-gradient(ellipse farthest-corner at 60% 100%, transparentize($lovely-purple, 0.40) 0%, transparentize($lovely-purple, 0.90) 100%)
-    transform: scale(1.05)
+    transform: scale(1.02)
     filter: drop-shadow(0 0.25em 2em transparentize($yogurt-purple, 0.30))
     transition: 125ms cubic-bezier(.55,-0.21,0,1.01)
     
@@ -57,7 +59,7 @@ const props = defineProps<{
     .gallery__card-image
         transition: all 175ms ease-out, transform 3500ms cubic-bezier(.55,-0.21,0,1.01)
         opacity: 1
-        transform: rotateY(-15deg) scale(1.05) translateX(-25%) translateY(-80%)
+        transform: rotateY(-15deg) scale(1.05) translateX(-25%) translateY(-60%)
         
     .gallery__card-name
         text-shadow: 0 0 0.5em white
@@ -82,19 +84,18 @@ const props = defineProps<{
 .gallery__card-image-container
     overflow: hidden
     width: 100%
-    height: 24em
+    height: 16em
     position: relative
     perspective: 300px
     background: $robust-purple
     background-image: radial-gradient($gentle-purple 1px, transparent 0)
     background-size: 40px 40px
-    box-shadow: inset 0 0 5em black
+    box-shadow: inset 0 0 2em black
     
 .gallery__card-image
     width: 100%
-    opacity: 0.80
     transform-origin: 50% 0
-    transform: rotateY(30deg) scale(1.1) translateX(25%) translateY(7%)
+    transform: rotateY(30deg) scale(1.1) translateX(25%) translateY(6em)
     border-radius: 1em
     position: relative
     border-left: $darken-purple 5px solid
@@ -151,13 +152,15 @@ const props = defineProps<{
     padding-block: 1.75em
     padding-inline: 1em
     display: flex
-    align-items: center
-    justify-content: center
+    align-items: flex-start
     flex-direction: column
-    margin-inline: 2em
+    margin-inline: 1.25em
+    min-height: 12lvh
     
-    > *
-        text-align: center
+.gallery__card-category
+    text-transform: uppercase
+    letter-spacing: 0.06125em
+    color: $yogurt-purple
     
 .gallery__card-name
     color: white
@@ -165,13 +168,14 @@ const props = defineProps<{
     transition: 35ms ease-out
     font-size: 1.25em
     position: relative
+    text-decoration: underline
     
 .gallery__card-name::after
     display: inline-block
     content: "→"
-    transform: rotate(-40deg) scale(0.8)
+    transform: rotate(-50deg) scale(0.8)
     position: absolute
-    right: -1.5em
+    right: -1em
     
 .gallery__card-description
     color: white

@@ -184,9 +184,8 @@ h2
         
 #gallery
     display: grid
-    grid-template-columns: repeat(3, 1fr)
-    row-gap: 6em
-    column-gap: 3em
+    grid-template-columns: repeat(4, 1fr)
+    gap: 3em
     padding-inline: 3em
     align-items: center
     justify-content: space-between
