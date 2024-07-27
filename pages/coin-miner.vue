@@ -62,7 +62,7 @@ import CoinMinerWhiteLogo from "~/components/coin-miner/CoinMinerWhiteLogo.vue";
             </div>
             
             <div id="instructions__right">
-                <ol>
+                <ol id="instructions__list">
                     <li>Скачай Coin Miner</li>
                     <li>Выбери майнер</li>
                     <li>Выводи деньги</li>
@@ -72,14 +72,16 @@ import CoinMinerWhiteLogo from "~/components/coin-miner/CoinMinerWhiteLogo.vue";
         </section>
         
         <section id="quote">
-            <CoinMinerQuoteIcon id="quote__icon"></CoinMinerQuoteIcon>
-            <p id="quote__text">
-                Coin Miner - самое минималистичное криптодобывающее приложение,<br />
-                что я когда-либо видел. Нажал на кнопку - и доход уже начисляется!<br />
-                Простейший способ дополнительной прибыли
-            </p>
-            <p id="quote__author">Анатолий Фролов, глава редакции The Anafrian Press</p>
-            <p id="quote__logo">The Anafrian Press</p>
+            <div id="quote__block">
+                <CoinMinerQuoteIcon id="quote__icon"></CoinMinerQuoteIcon>
+                <p id="quote__text">
+                    Coin Miner - самое минималистичное криптодобывающее приложение,<br />
+                    что я когда-либо видел. Нажал на кнопку - и доход уже начисляется!<br />
+                    Простейший способ дополнительной прибыли
+                </p>
+                <p id="quote__author">Анатолий Фролов, глава редакции The Anafrian Press</p>
+                <p id="quote__logo">The Anafrian Press</p>
+            </div>
         </section>
         
         <section id="algorithm">
@@ -136,7 +138,7 @@ import CoinMinerWhiteLogo from "~/components/coin-miner/CoinMinerWhiteLogo.vue";
         <section id="last">
             <h2 id="last__title">Присоединяйся к добыче крипты!</h2>
             <p id="last__text">Просто попробуй :)</p>
-            <CoinMinerSeparator></CoinMinerSeparator>
+            <CoinMinerSeparator id="last__separator"></CoinMinerSeparator>
             <button id="last__cta">Скачать Coin Miner (6.3 Mb)</button>
         </section>
         
@@ -151,7 +153,7 @@ import CoinMinerWhiteLogo from "~/components/coin-miner/CoinMinerWhiteLogo.vue";
                 <a @click="navigateTo('/')" class="footer__link">Вернуться в Галерею</a>
             </aside>
             
-            <span id="footer_copyright">&copy; 2024 Coin Miner. Все права защищены.</span>
+            <span id="footer__copyright">&copy; 2024 Coin Miner. Все права защищены.</span>
         </footer>
     </GalleryPageTemplate>
 </template>
@@ -161,11 +163,12 @@ import CoinMinerWhiteLogo from "~/components/coin-miner/CoinMinerWhiteLogo.vue";
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap')
 
 $page-padding: 12rem
+$coin: #FFD55F
 
 *
     font-family: "Geologica", sans-serif
     
-header, section
+header, section, footer
     box-sizing: border-box
     padding-inline: $page-padding
     
@@ -206,4 +209,232 @@ button
 #logo__text
     font-weight: 1000
     text-transform: lowercase
+    
+#hero
+    height: 80dvh
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+#hero__left
+    display: flex
+    align-items: flex-start
+    justify-content: center
+    flex-direction: column
+    
+#hero__news
+    background: $coin
+    border-radius: 9999px
+    padding-block: 0.5rem
+    padding-inline: 2rem
+    font-weight: 200
+    
+#hero__title
+    font-size: 2.5rem
+    font-weight: 1000
+    margin-bottom: 1.0rem
+    
+#hero__cta
+    margin-block: 1rem
+    
+#hero__features
+    display: grid
+    grid-template-rows: 1fr 1fr
+    row-gap: 1rem
+    align-self: stretch
+    margin-block-start: 1.5rem
+    
+.hero__feature
+    display: flex
+    align-items: center
+    
+.hero__feature-value
+    display: inline-block
+    font-weight: 1000
+    font-size: 1.5rem
+    flex-basis: 9rem
+    flex-shrink: 0
+    
+.hero__feature-description
+    padding-block: 0.25rem
+    padding-inline-start: 1rem
+    border-left: 1px solid black
+    
+#hero__right
+    display: grid
+    place-items: center
+    
+#hero__image
+    height: 50dvh
+    border: #AAAAAA 1px solid
+    border-radius: 1rem
+    
+#instructions
+    background: $coin
+    display: grid
+    grid-template-columns: 2fr 1fr
+    padding-block: 20dvh
+    
+#instructions__left
+    display: grid
+    place-items: center
+    
+#instructions__image
+    border-radius: 1rem
+    
+#instructions__right
+    display: flex
+    align-items: flex-start
+    justify-content: center
+    flex-direction: column
+    
+#instructions__list
+    list-style: none
+    counter-reset: item
+    padding-inline-start: 0
+    
+    li
+        counter-increment: item
+        margin-block-end: 1rem
+        
+    li::before
+        display: inline-block
+        font-weight: 1000
+        color: black
+        font-size: 1.5rem
+        margin-right: 3rem
+        content: counter(item)
+        line-height: 1.5rem
+        transform: translateY(0.125rem)
+        
+#quote
+    display: grid
+    place-items: center
+    padding-block: 30dvh
+    
+#quote__icon
+    width: 4rem
+    
+#quote__text
+    font-style: italic
+    
+#quote__author
+    font-weight: 600
+    margin-block-start: 1.5rem
+    
+#quote__logo
+    color: #AAAAAA
+    font-family: "Lora", serif
+    font-size: 1.25rem
+    margin-block-start: 2.5rem
+    
+#algorithm
+    display: flex
+    align-items: flex-end
+    justify-content: center
+    flex-direction: column
+    margin-inline: $page-padding
+    background: $coin
+    border-radius: 3rem
+    padding-block: 3rem
+    padding-inline: 4rem
+    
+#algorithm__title
+    font-size: 3rem
+    font-weight: 1000
+    text-align: right
+    margin-bottom: 0.5rem
+    
+#algorithm__title-badge
+    display: inline-block
+    margin-inline-end: 0.5rem
+    background: black
+    color: white
+    padding-block: 0.5rem
+    padding-inline: 1rem
+    border-radius: 1rem
+    text-transform: uppercase
+    
+#algorithm__text
+    text-align: right
+    
+#algorithm__illustration
+    margin-block-start: 4rem
+    
+#features
+    display: grid
+    grid-template-rows: repeat(2, 1fr)
+    grid-template-columns: repeat(2, 1fr)
+    padding-block: 30dvh
+    row-gap: 2em
+    
+.feature
+    border-left: $coin 0.25rem solid
+    padding-inline-start: 1.5rem
+    
+.feature__number
+    font-weight: 700
+    font-style: italic
+    font-size: 3rem
+    margin-block-end: 1rem
+    
+.feature__title
+    font-size: 1rem
+    
+.feature__description
+    max-width: 30rem
+    
+#last
+    display: grid
+    place-items: center
+    background: $coin
+    text-align: center
+    padding-block: 5dvh
+    
+#last__title
+    font-size: 2.5rem
+    margin-block-end: 0.5rem
+    font-weight: 1000
+    
+#last__separator
+    width: 3rem
+    margin-block-end: 4rem
+    
+footer
+    background: black
+    display: flex
+    align-items: flex-start
+    justify-content: center
+    flex-direction: column
+    padding-block: 10dvh
+    
+#footer__logo
+    display: flex
+    align-items: center
+    justify-content: center
+    column-gap: 0.5rem
+    
+#footer__logo-image
+    width: 1rem
+    
+#footer__logo-text
+    color: white
+    text-transform: lowercase
+    font-weight: 1000
+    
+#footer__links
+    margin-block: 3rem
+    display: flex
+    flex-direction: column
+    column-gap: 0.75rem
+    
+.footer__link
+    color: white
+    text-decoration: none
+    cursor: pointer
+    
+#footer__copyright
+    opacity: 0.30
+    color: white
+    font-weight: 200
 </style>
