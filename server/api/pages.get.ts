@@ -26,6 +26,12 @@ export default defineEventHandler(async (_: H3Event): Promise<GetPages> => {
                 category: 'Лендинг',
             },
             {
+                route: 'xare',
+                name: 'Xare Seсurity 70000',
+                description: 'Экосистема антивирусных программ, работающих в режиме реального времени.',
+                category: 'Лендинг',
+            },
+            {
                 route: 'sakurator',
                 link: 'https://sakurator.anafro.ru/',
                 name: 'Anafro.Sakurator',
