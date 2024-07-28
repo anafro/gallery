@@ -26,8 +26,8 @@ import CoinMinerWhiteLogo from "~/components/coin-miner/CoinMinerWhiteLogo.vue";
                     может майнить крипту!
                 </h1>
                 <p id="hero__text">
-                    Coin Miner - простой в использовании криптомайнер,<br />
-                    способный эффективно использовать ресурсы компьютера<br />
+                    Coin Miner - простой в использовании криптомайнер,
+                    способный эффективно использовать ресурсы компьютера
                     и зарабатывать криптовалюту!
                 </p>
                 <button id="hero__cta">Скачать Coin Miner (6.3 Mb)</button>
@@ -211,7 +211,7 @@ button
     text-transform: lowercase
     
 #hero
-    height: 80dvh
+    min-height: 80dvh
     display: flex
     align-items: center
     justify-content: space-between
@@ -437,4 +437,96 @@ footer
     opacity: 0.30
     color: white
     font-weight: 200
+    
+@media (max-width: 1700px)
+    #hero__image
+        height: 30dvh
+        
+@media (max-width: 1500px)
+    #hero
+        flex-direction: column
+        
+    #hero__left
+        align-items: center
+        
+    #hero__news
+        text-align: center
+        
+    #hero__title
+        text-align: center
+        
+    #hero__text
+        text-align: center
+        max-width: 36rem
+        
+    #hero__cta
+        align-self: center
+        
+    #hero__features
+        align-items: center
+        justify-content: center
+        
+    #hero__image
+        margin-block: 6rem
+        
+@media (max-width: 1250px)
+    header, footer, #hero, #instructions, #features, #quote, #last
+        padding-inline: 3rem
+        
+    #algorithm
+        margin-inline: 3rem
+        
+@media (max-width: 1000px)
+    header
+        justify-content: center
+        padding-block: 2rem
+        
+    #header__cta
+        display: none
+    
+    #hero__title
+        font-size: 2rem
+        
+    #hero__image
+        width: 80dvw
+        height: auto
+        
+    #instructions
+        grid-template-columns: 1fr
+        grid-template-rows: 1fr 1fr
+        padding-block: 10dvh
+        
+    #instructions__right
+        align-items: center
+        justify-content: center
+        
+    #instructions__image
+        max-width: 70dvw
+        height: auto
+        
+    #quote
+        padding-block: 10dvh
+        
+    #algorithm__title
+        font-size: 2.5rem
+   
+@media (max-width: 700px)
+    #quote__text
+        max-width: 22rem
+        
+    #algorithm
+        margin-inline: 0
+        border-radius: 0
+        
+    #features
+        grid-template-rows: repeat(4, 1fr)
+        grid-template-columns: 1fr
+        
+    #last__title
+        font-size: 2rem
+        
+    footer
+        align-items: center
+        justify-content: center
+        text-align: center
 </style>
