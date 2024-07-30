@@ -43,9 +43,13 @@ useHead({
             name: "theme-color",
             content: "#ffffff"
         }
-    ]
+    ],
+    script: [
+        {
+            src: "https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js",
+        },
+    ],
 });
-
 </script>
 
 <template>

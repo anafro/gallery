@@ -37,7 +37,7 @@ function revealScreenshot(): void {
                 <div class="gallery__card-image-button red"></div>
             </div>
             <ClientOnly>
-                <img alt="Website Screenshot" :src="`/screenshots/${route}.png`" class="gallery__card-screenshot" @load="revealScreenshot" />
+                <NuxtImg placeholder alt="Website Screenshot" :src="`/screenshots/${route}.png`" class="gallery__card-screenshot" @load="revealScreenshot" />
             </ClientOnly>
         </div>
         <div class="gallery__card-image-filter"></div>

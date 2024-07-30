@@ -14,6 +14,12 @@ export default defineEventHandler(async (_: H3Event): Promise<GetPages> => {
     return {
         pages: [
             {
+                route: 'shockwave',
+                name: 'Shockwave Studios',
+                description: 'Студия разработки профессиональных UI/UX дизайнов.',
+                category: 'Лендинг',
+            },
+            {
                 route: 'ecopulse-energy',
                 name: 'EcoPulse Energy',
                 description: 'Лидер в области разработки и внедрения возобновляемых источников энергии.',

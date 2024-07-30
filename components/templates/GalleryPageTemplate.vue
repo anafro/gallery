@@ -28,6 +28,7 @@ const visible: Ref<boolean> = ref(true);
     padding-block: 0.5em
     position: relative
     filter: drop-shadow(0 0.125em 1em transparentize($yogurt-purple, 0.50))
+    z-index: 99999999
     
 #gallery-page-template__back-to-gallery-link
     color: white
