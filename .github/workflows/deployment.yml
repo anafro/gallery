@@ -17,7 +17,7 @@ jobs:
     - name: stop gallery server
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "pm2 stop index"
     - name: connect and pull
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull"
+      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && cd .. && rm -rf gallery && git clone https://github.com/anafro/gallery && cd gallery && git checkout ${{ secrets.MAIN_BRANCH }} && npm install"
     - name: build nuxt app
       run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && nuxi build"
     - name: start gallery server
