@@ -13,6 +13,7 @@ const props = defineProps<{
 }>();
 
 const isScreenshotVisible: Ref<boolean> = ref<boolean>(false);
+const isScreenshotFailedToLoad: Ref<boolean> = ref<boolean>(false);
 
 function revealScreenshot(): void {
     const revealDelay: Milliseconds = milliseconds.of(1000 * Math.random() + 700);
@@ -21,13 +22,19 @@ function revealScreenshot(): void {
         isScreenshotVisible.value = true
     }, revealDelay.value);
 }
+
+function showScreenshotPlaceholder(): void {
+    console.log("showScreenshotPlaceholder is invoked!")
+    isScreenshotFailedToLoad.value = true;
+}
 </script>
 
 <template>
 <NuxtLink class="gallery__card" :to="link ?? `/${route}`" :external="link !== undefined">
     <div class="gallery__card-image-container">
-        <div class="gallery__card-image-loading-filter" :class="{ 'loaded': isScreenshotVisible }">
+        <div class="gallery__card-image-loading-filter" :class="{ 'loaded': isScreenshotVisible, 'error': isScreenshotFailedToLoad }">
             <div class="gallery__card-image-loading-circle"></div>
+            <span class="gallery__card-image-screenshot-placeholder">Скриншота пока нет</span>
         </div>
 
         <div class="gallery__card-image">
@@ -37,7 +44,7 @@ function revealScreenshot(): void {
                 <div class="gallery__card-image-button red"></div>
             </div>
             <ClientOnly>
-                <NuxtImg placeholder alt="Website Screenshot" :src="`/screenshots/${route}.png`" class="gallery__card-screenshot" @load="revealScreenshot" />
+                <NuxtImg placeholder alt="Website Screenshot" :src="`/screenshots/${route}.png`" class="gallery__card-screenshot" @load="revealScreenshot" :onerror="showScreenshotPlaceholder" />
             </ClientOnly>
         </div>
         <div class="gallery__card-image-filter"></div>
@@ -122,6 +129,12 @@ $grain: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJUAAACWBAMAAAAlGNfSAA
     background-blend-mode: overlay
     background: $grain
     backdrop-filter: blur(20px)
+
+    .gallery__card-image-screenshot-placeholder
+        display: none
+        color: white
+        font-size: 1.5rem
+
     & ~ * .gallery__card-screenshot, & ~ * .gallery__card-image-ui
         visibility: hidden
 
@@ -133,6 +146,14 @@ $grain: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJUAAACWBAMAAAAlGNfSAA
 
         & ~ * .gallery__card-screenshot, & ~ * .gallery__card-image-ui
             visibility: visible
+
+    &.error
+        background: none
+        .gallery__card-image-loading-circle
+            display: none
+
+        .gallery__card-image-screenshot-placeholder
+            display: inline-block
 
 @keyframes gallery__card-image-loading-filter-fade-out
     to
