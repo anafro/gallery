@@ -20,9 +20,9 @@ export default defineEventHandler(async (_: H3Event): Promise<GetPages> => {
             //     category: 'Лендинг',
             // },
             {
-                route: 'ecopulse-energy',
-                name: 'EcoPulse Energy',
-                description: 'Лидер в области разработки и внедрения возобновляемых источников энергии.',
+                route: 'xare',
+                name: 'Xare Seсurity 70000',
+                description: 'Экосистема антивирусных программ, работающих в режиме реального времени.',
                 category: 'Лендинг',
             },
             {
@@ -32,9 +32,9 @@ export default defineEventHandler(async (_: H3Event): Promise<GetPages> => {
                 category: 'Лендинг',
             },
             {
-                route: 'xare',
-                name: 'Xare Seсurity 70000',
-                description: 'Экосистема антивирусных программ, работающих в режиме реального времени.',
+                route: 'ecopulse-energy',
+                name: 'EcoPulse Energy',
+                description: 'Лидер в области разработки и внедрения возобновляемых источников энергии.',
                 category: 'Лендинг',
             },
             {
