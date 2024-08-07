@@ -266,7 +266,7 @@ button
     
 #hero__text
     text-align: center
-    width: 36rem
+    max-width: 36rem
     
 #hero__logo-image
     width: 70%
