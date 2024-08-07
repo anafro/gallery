@@ -28,7 +28,7 @@ onMounted(() => {
             </div>
             
             <div id="header__buttons">
-                <button id="header__order-button" @click="navigateTo('https://t.me/anafro_ru', { external: true, open: { target: '_blank'} })"><TelegramLogo id="header__order-button-icon" />Заказать сайт</button>
+                <button id="header__order-button" @click="navigateTo('https://t.me/anatoly_frolov', { external: true, open: { target: '_blank'} })"><TelegramLogo id="header__order-button-icon" />Заказать сайт</button>
             </div>
         </header>
         
