@@ -182,8 +182,6 @@ $coffee: #F8F1E9
 $mint: #86F9B8
 $safety: #0E33FE
 
-$page-padding: 12rem
-
 *
     font-family: "Inter Tight", "Inter", sans-serif
     color: $depth
@@ -194,9 +192,10 @@ $page-padding: 12rem
     
 #xare
     background: $latte
-    
+    --page-padding: 18rem
+
 header, section, footer
-    padding-inline: $page-padding
+    padding-inline: var(--page-padding)
     
 header
     display: flex
@@ -239,7 +238,7 @@ button
     
 #hero
     padding-inline: 0
-    margin-inline: $page-padding
+    margin-inline: var(--page-padding)
     background: radial-gradient(ellipse farthest-corner at 50% 20%, mix($safety, white, 30%) 0%, white 30%, white 100%)
     min-height: 80dvh
     display: flex
@@ -276,13 +275,17 @@ button
     display: flex
     align-items: center
     justify-content: center
-    column-gap: 3rem
+    gap: 3rem
     padding-block: 8dvh
+    text-align: center
     
     > *
         color: #AAAAAA
         font-size: 1.5rem
-        
+
+.company
+    text-wrap: nowrap
+
 #company__airdnd
     font-weight: 600
     
@@ -303,12 +306,12 @@ button
     
 #details__title
     font-size: 1.5rem
-    width: 30rem
+    max-width: 30rem
     
 #details__text
-    width: 36rem
     font-weight: 300
-    
+    max-width: 36rem
+
 #details__features
     background: white
     padding: 2rem
@@ -331,7 +334,7 @@ button
     height: auto
 
 .details__feature-description
-    width: 24rem
+    max-width: 24rem
 
 #downloads
     display: flex
@@ -340,7 +343,7 @@ button
     flex-direction: column
     background: $coffee
     padding: 3rem
-    margin-inline: $page-padding
+    margin-inline: var(--page-padding)
     border-radius: 1rem
     text-align: center
 
@@ -351,12 +354,12 @@ button
     margin-bottom: 1rem
 
 #downloads__text
-    width: 24rem
+    max-width: 24rem
 
 #features
     display: grid
     grid-template-columns: repeat(3, 1fr)
-    column-gap: 6rem
+    gap: 2rem
     margin-block: 10dvh
 
 .feature
@@ -379,7 +382,7 @@ button
 
 #last
     padding: 4rem
-    margin-inline: $page-padding
+    margin-inline: var(--page-padding)
     background: $depth
     display: flex
     align-items: center
@@ -423,6 +426,7 @@ footer
     position: relative
     background: $safety
     padding-block: 6rem
+    isolation: isolate
 
 #footer__block
     border-radius: 1rem
@@ -444,6 +448,9 @@ footer
     flex-direction: column
     row-gap: 0.5rem
 
+.footer__menu-bar-item
+    text-decoration: none
+
 #footer__logo
     display: flex
     align-items: center
@@ -460,10 +467,129 @@ footer
 #footer__logo-text-thin
     font-weight: 200
 
+#footer__copyright
+    opacity: 0.50
+
 #footer__illustration
     position: absolute
     top: -3rem
-    right: 5rem
+    right: var(--page-padding)
     width: 16rem
     height: auto
+    z-index: -1
+
+@media (max-width: 1600px)
+    #xare
+        --page-padding: 12rem
+
+@media (max-width: 1400px)
+    #xare
+        --page-padding: 6rem
+
+    #details
+        padding-block-start: 0
+        align-items: stretch
+        flex-direction: column-reverse
+
+    #details__content
+        display: flex
+        align-items: flex-end
+        flex-direction: column
+        text-align: right
+        margin-top: 3rem
+        padding-inline: 2rem
+
+@media (max-width: 1100px)
+    #header__menu
+        display: none
+
+    #features
+        grid-template-columns: 1fr
+        grid-template-rows: repeat(3, 1fr)
+
+    .feature__icon
+        margin-block-end: 3rem
+
+    #last
+        margin-inline: 0
+        border-radius: 0
+
+@media (max-width: 900px)
+    #xare
+        --page-padding: 2rem
+
+    #hero
+        margin-inline: 0
+        border-radius: 0
+
+        & > *
+            max-width: 24rem
+
+    #companies
+        flex-direction: column
+
+    #details
+        align-items: stretch
+        justify-content: center
+        padding-inline: 0
+
+    #downloads
+        border-radius: 0
+        margin-inline: 0
+
+    .details__feature-icon
+        width: 6rem
+        align-items: center
+        justify-content: center
+
+    #details__features
+        row-gap: 3rem
+        align-items: center
+        justify-content: center
+        border-radius: 0
+        padding-block: 6rem
+
+    #details__content
+        align-items: center
+        justify-content: center
+        text-align: center
+
+    .details__feature
+        align-items: center
+        justify-content: center
+        flex-direction: column
+        row-gap: 2rem
+
+    .details__feature-description
+        max-width: 24rem
+
+    #last
+        flex-direction: column-reverse
+        text-align: center
+        row-gap: 3rem
+
+    #last__content
+        align-items: center
+        justify-content: center
+
+    #footer__block
+        grid-template-columns: 1fr
+        grid-template-rows: repeat(4, 1fr)
+
+    #footer__copyright
+        display: none
+
+
+@media (max-width: 600px)
+    header
+        justify-content: center
+
+    #header__cta
+        display: none
+
+    #features
+        padding-inline: 0
+
+    .feature
+        border-radius: 0
 </style>
