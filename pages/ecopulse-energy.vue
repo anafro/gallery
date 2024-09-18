@@ -10,114 +10,119 @@ import WindPowerIcon from "~/components/ecopulse-energy/WindPowerIcon.vue";
 
 <template>
     <GalleryPageTemplate>
-        <header class="inherits-page-padding">
-            <a id="header__logo" href="#">EcoPulse Energy&trade;</a>
-            
-            <aside id="header__menu">
-                <a href="#" class="header__menu-item">Стоимость</a>
-                <a href="#" class="header__menu-item">Наша миссия</a>
-                <a href="#" class="header__menu-item">Отзывы</a>
-            </aside>
-            
-            <button id="header__cta">Заказать звонок</button>
-        </header>
-        
-        <section id="landing__main">
-            <WindPowerIcon id="landing__main-wind-power" />
-            
-            <h1>
-                Познай волшебство<WindPowerIcon id="landing__main-h1-wind-power" /><br>
-                возобновляемой энергии!
-            </h1>
-            
-            <div id="landing__main-details">
-                <button id="landing__main-cta">Заказать генератор →</button>
-                <span id="landing__main-text">
+        <div id="ecopulse-energy">
+            <header class="inherits-page-padding">
+                <a id="header__logo" href="#">EcoPulse Energy&trade;</a>
+
+                <aside id="header__menu">
+                    <a href="#" class="header__menu-item">Стоимость</a>
+                    <a href="#" class="header__menu-item">Наша миссия</a>
+                    <a href="#" class="header__menu-item">Отзывы</a>
+                </aside>
+
+                <button id="header__cta">Заказать звонок</button>
+            </header>
+
+            <section id="landing__main">
+                <WindPowerIcon id="landing__main-wind-power" />
+
+                <h1>
+                    Познай волшебство<WindPowerIcon id="landing__main-h1-wind-power" /><br>
+                    возобновляемой энергии!
+                </h1>
+
+                <div id="landing__main-details">
+                    <button id="landing__main-cta">Заказать генератор →</button>
+                    <span id="landing__main-text">
                     * Благодаря ветряным генераторам,<br>
                     мы можем не только снизить выброс углекислого газа,<br>
                     но и уменьшить стоимость электроэнергии в разы!
                 </span>
-            </div>
-        </section>
-        
-        <section id="landing__features">
-            <span id="landing__features-call-out" class="call-out">Стать частью будущего проще простого!</span>
-            <h2 id="landing__features-title">
-                Перейдя на экологичную электроэнергию,<br>
-                вы делаете мир приятным и чистым!
-            </h2>
-            <div id="landing__features-cards">
-                <div class="landing__feature-card">
-                    <span class="landing__feature-card-value">на 96%</span>
-                    <span class="landing__feature-card-description">меньше выбросов углекислого газа СО2</span>
                 </div>
-                <div class="landing__feature-card">
+            </section>
+
+            <section id="landing__features">
+                <span id="landing__features-call-out" class="call-out">Стать частью будущего проще простого!</span>
+                <h2 id="landing__features-title">
+                    Перейдя на экологичную электроэнергию,<br>
+                    вы делаете мир приятным и чистым!
+                </h2>
+                <div id="landing__features-cards">
+                    <div class="landing__feature-card">
+                        <span class="landing__feature-card-value">на 96%</span>
+                        <span class="landing__feature-card-description">меньше выбросов углекислого газа СО2</span>
+                    </div>
+                    <div class="landing__feature-card">
                     <span class="landing__feature-card-value">
                         <WindPowerIcon id="landing__feature-card-value-wind-power"></WindPowerIcon>
                     </span>
-                    <span class="landing__feature-card-description">не требует горючего топлива</span>
-                </div>
-            </div>
-        </section>
-        
-        <div id="landing__ticker-container">
-            <section id="landing__ticker">
-                <div class="landing__ticker-line">
-                    Электричество → Экологично → Выгодно → Волшебно → Будущее → Технологии → Энергия
-                </div>
-                <div class="landing__ticker-line">
-                    Эко ← Сохранение природы ← Экономия ← Green Energy ← ГеоЭС ← Ветряная энергия
+                        <span class="landing__feature-card-description">не требует горючего топлива</span>
+                    </div>
                 </div>
             </section>
-        </div>
-        
-        <div id="landing__show-off-container">
-            <section id="landing__show-off">
-                <img id="landing__show-off-image" src="/ecopulse-energy/wind-power-in-sea.png" alt="Image Not Found">
-                <span id="landing__show-off-call-out" class="call-out">От Мурманска до Петропавловска-Камчатского!</span>
-                <h2 id="landing__show-off-title">
-                    Мы уже установили 6 миллионов<br>
-                    ветряных генераторов в России!
-                </h2>
-                <span id="landing__show-off-text">
+
+            <div id="landing__ticker-container">
+                <section id="landing__ticker">
+                    <div class="landing__ticker-line">
+                        Электричество → Экологично → Выгодно → Волшебно → Будущее → Технологии → Энергия
+                    </div>
+                    <div class="landing__ticker-line">
+                        Эко ← Сохранение природы ← Экономия ← Green Energy ← ГеоЭС ← Ветряная энергия
+                    </div>
+                </section>
+            </div>
+
+            <div id="landing__show-off-container">
+                <section id="landing__show-off">
+                    <img id="landing__show-off-image" src="/ecopulse-energy/wind-power-in-sea.png" alt="Image Not Found">
+                    <span id="landing__show-off-call-out" class="call-out">От Мурманска до Петропавловска-Камчатского!</span>
+                    <h2 id="landing__show-off-title">
+                        Мы уже установили 6 миллионов<br>
+                        ветряных генераторов в России!
+                    </h2>
+                    <span id="landing__show-off-text">
                     У нас были заказы от небольших компаний,<br>
                     частных предпринимателей и даже от мировых корпораций.<br>
                     Мы сможем найти что-то и для Вас!
                 </span>
-                <button id="landing__show-off-cta">Заказать звонок</button>
-            </section>
+                    <button id="landing__show-off-cta">Заказать звонок</button>
+                </section>
+            </div>
+
+            <footer>
+                <div id="footer__left">
+                    <WindPowerIcon id="footer__wind-power"></WindPowerIcon>
+
+                    <a id="footer__logo" href="#">EcoPulse Energy&trade;</a>
+
+                    <aside id="footer__menu">
+                        <a href="#" class="footer__menu-item">Стоимость</a>
+                        <a href="#" class="footer__menu-item">Наша миссия</a>
+                        <a href="#" class="footer__menu-item">Отзывы</a>
+                    </aside>
+                </div>
+                <div id="footer__right">
+                    EcoPulse Energy&trade; не является настоящей компанией!
+                    Я её выдумал, чтобы сделать для неё эту посадочную страницу.
+                    <a href="/" id="footer__to-gallery-link">Посмотрите и другие мои работы!</a>
+                </div>
+            </footer>
         </div>
-        
-        <footer>
-            <div id="footer__left">
-                <WindPowerIcon id="footer__wind-power"></WindPowerIcon>
-                
-                <a id="footer__logo" href="#">EcoPulse Energy&trade;</a>
-                
-                <aside id="footer__menu">
-                    <a href="#" class="footer__menu-item">Стоимость</a>
-                    <a href="#" class="footer__menu-item">Наша миссия</a>
-                    <a href="#" class="footer__menu-item">Отзывы</a>
-                </aside>
-            </div>
-            <div id="footer__right">
-                EcoPulse Energy&trade; не является настоящей компанией!
-                Я её выдумал, чтобы сделать для неё эту посадочную страницу.
-                <a href="/" id="footer__to-gallery-link">Посмотрите и другие мои работы!</a>
-            </div>
-        </footer>
     </GalleryPageTemplate>
 </template>
 
 <style scoped lang="sass">
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap')
 
-*
+*, *::before, *::after
     font-family: "Inter", sans-serif
     
 *::selection
     background-color: lightgray
-    
+
+#ecopulse-energy
+    background: white
+
 a
     color: black
     text-decoration: none

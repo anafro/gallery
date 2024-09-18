@@ -24,7 +24,6 @@ function revealScreenshot(): void {
 }
 
 function showScreenshotPlaceholder(): void {
-    console.log("showScreenshotPlaceholder is invoked!")
     isScreenshotFailedToLoad.value = true;
 }
 </script>
@@ -125,9 +124,9 @@ $grain: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJUAAACWBAMAAAAlGNfSAA
     display: grid
     place-items: center
     z-index: 99
+    background: $grain
     mix-blend-mode: overlay
     background-blend-mode: overlay
-    background: $grain
     backdrop-filter: blur(20px)
 
     .gallery__card-image-screenshot-placeholder
@@ -227,11 +226,9 @@ $grain: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJUAAACWBAMAAAAlGNfSAA
     right: 0
     bottom: 0
     left: 0
-    background: $lovely-purple
     opacity: 0.50
     transition: 200ms ease-out
-    mix-blend-mode: darken
-    
+
 .gallery__card-text-container
     padding-block: 1.75em
     padding-inline: 1em

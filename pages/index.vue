@@ -1,6 +1,9 @@
 <script setup lang="ts">
 useHead({
-    title: "Галерея сайтов Анатолия Фролова • Узнай, на что я способен!"
+    title: "Галерея сайтов Анатолия Фролова • Узнай, на что я способен!",
+    bodyAttrs: {
+        class: "body",
+    }
 });
 
 import Logo from "~/components/Logo.vue";
@@ -48,7 +51,7 @@ onMounted(() => {
 
 #index
     min-height: 100vh
-    background-image: radial-gradient(ellipse farthest-corner at 50% 0%, mix($gentle-purple, $darken-purple, 50%) 0%, $darken-purple 70%, $darken-purple 100%)
+    background-image: $purple-background
     transition: filter 300ms ease-out
     
 #index:has(#header__order-button:hover)

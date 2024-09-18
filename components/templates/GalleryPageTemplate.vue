@@ -5,17 +5,19 @@ const visible: Ref<boolean> = ref(true);
 </script>
 
 <template>
-    <div id="gallery-page-template__back-to-gallery-bar" v-if="visible">
-        <a href="/" id="gallery-page-template__back-to-gallery-link">
-            <span id="gallery-page-template__back-to-gallery-link-long-text">Нажмите сюда, чтобы вернуться в Галерею</span>
-            <span id="gallery-page-template__back-to-gallery-link-short-text">← Обратно в Галерею</span>
-        </a>
-        <button id="gallery-page-template__back-to-gallery-hide-button" @click="visible = false">
-            <span id="gallery-page-template__back-to-gallery-hide-button-text">Скрыть эту панель</span>
-            ×
-        </button>
+    <div id="gallery-page">
+        <div id="gallery-page-template__back-to-gallery-bar" v-if="visible">
+            <NuxtLink to="/" id="gallery-page-template__back-to-gallery-link">
+                <span id="gallery-page-template__back-to-gallery-link-long-text">Нажмите сюда, чтобы вернуться в Галерею</span>
+                <span id="gallery-page-template__back-to-gallery-link-short-text">← Обратно в Галерею</span>
+            </NuxtLink>
+            <button id="gallery-page-template__back-to-gallery-hide-button" @click="visible = false">
+                <span id="gallery-page-template__back-to-gallery-hide-button-text">Скрыть эту панель</span>
+                ×
+            </button>
+        </div>
+        <slot></slot>
     </div>
-    <slot></slot>
 </template>
 
 <style scoped lang="sass">
