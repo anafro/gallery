@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import renderPage from "~/utils/html/html-image-renderer";
 import type {Ref} from "vue";
 import {Duration, type Milliseconds} from 'typed-duration';
 const { milliseconds } = Duration;
 
-const props = defineProps<{
-    route: string,
+defineProps<{
+    route: string,                                        
     link?: string,
     name: string,
     description: string,
