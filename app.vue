@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Lenis from "lenis";
 
 useHead({
     link: [
@@ -32,6 +33,10 @@ useHead({
             rel: "mask-icon",
             href: "/safari-pinned-tab.svg",
             color: "#762fea"
+        },
+        {
+            rel: "stylesheet",
+            href: "https://unpkg.com/lenis@1.1.13/dist/lenis.css"
         }
     ],
     meta: [
@@ -49,6 +54,23 @@ useHead({
             src: "https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js",
         },
     ],
+});
+
+function initializeSmoothScroll(): void {
+    const lenis = new Lenis({
+        duration: 2.000,
+    });
+
+    const performScrollAnimationFrame = (time: number): void => {
+        lenis.raf(time);
+        requestAnimationFrame(performScrollAnimationFrame);
+    }
+
+    requestAnimationFrame(performScrollAnimationFrame);
+}
+
+onMounted((): void => {
+    initializeSmoothScroll();
 });
 </script>
 

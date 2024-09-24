@@ -13,12 +13,12 @@ export type GetPages = {
 export default defineEventHandler(async (_: H3Event): Promise<GetPages> => { 
     return {
         pages: [
-            // {
-            //     route: 'shockwave',
-            //     name: 'Shockwave Studios',
-            //     description: 'Студия разработки профессиональных UI/UX дизайнов.',
-            //     category: 'Лендинг',
-            // },
+            {
+                route: 'shifjuchkin-studio',
+                name: 'Студия Шифьючкина',
+                description: 'Студия разработки дизайнов и сайтов.',
+                category: 'Лендинг',
+            },
             {
                 route: 'xare',
                 name: 'Xare Seсurity 70000',
