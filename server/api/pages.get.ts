@@ -14,6 +14,12 @@ export default defineEventHandler(async (_: H3Event): Promise<GetPages> => {
     return {
         pages: [
             {
+                route: 'dragon-nest',
+                name: 'Гнездо дракона',
+                description: 'Антикафе во Владивостоке, в котором можно отдохнуть, поиграть и провести партию по ДНД.',
+                category: 'Лендинг',
+            },
+            {
                 route: 'shifjuchkin-studio',
                 name: 'Студия Шифьючкина',
                 description: 'Студия разработки дизайнов и сайтов.',

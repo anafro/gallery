@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import Lenis from "lenis";
 
+const IS_SMOOTH_SCROLL_ENABLED = true;
+
 useHead({
     link: [
         {
@@ -37,7 +39,7 @@ useHead({
         {
             rel: "stylesheet",
             href: "https://unpkg.com/lenis@1.1.13/dist/lenis.css"
-        }
+        },
     ],
     meta: [
         {
@@ -53,6 +55,9 @@ useHead({
         {
             src: "https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js",
         },
+        {
+            src: "https://api-maps.yandex.ru/2.1/?apikey=30330469-99da-4f42-b52f-7c2fb6c61544&lang=ru_RU",
+        }
     ],
 });
 
@@ -70,7 +75,9 @@ function initializeSmoothScroll(): void {
 }
 
 onMounted((): void => {
-    initializeSmoothScroll();
+    if (IS_SMOOTH_SCROLL_ENABLED) {
+        initializeSmoothScroll();
+    }
 });
 </script>
 

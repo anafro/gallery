@@ -8,26 +8,99 @@ import CrownIcon from "~/components/shifjuchkin-studio/CrownIcon.vue";
 import GlobeIcon from "~/components/shifjuchkin-studio/GlobeIcon.vue";
 import ArrowIcon from "~/components/shifjuchkin-studio/ArrowIcon.vue";
 import StarIcon from "~/components/shifjuchkin-studio/StarIcon.vue";
+import {get, useMouse, useScroll} from "@vueuse/core";
+
+type Vector2D = {
+    x: number,
+    y: number,
+}
+
+type Service = {
+    name: string,
+    slug: string,
+};
+
+const services: Service[] = [
+    {
+        name: "Разработка сайтов",
+        slug: "web-development",
+    },
+    {
+        name: "Web-дизайн",
+        slug: "web-design",
+    },
+    {
+        name: "Брендинг",
+        slug: "branding",
+    },
+    {
+        name: "SEO",
+        slug: "seo",
+    },
+];
+
+const serviceEls = ref();
+const mouse = useMouse({ touch: false });
+const { isScrolling } = useScroll(document);
 
 onMounted((): void => {
-    const cursor: HTMLElement | null = document.getElementById('cursor');
+    const cursorEl: HTMLElement | null = document.getElementById('cursor');
+    const servicesEl: HTMLElement | null = document.getElementById("services");
+    const serviceImageEls: NodeListOf<Element> = document.querySelectorAll('.services__service-image');
 
-    window.addEventListener('mousemove', (event) => {
-        if (cursor) {
-            cursor.style.left = `${event.clientX}px`;
-            cursor.style.top = `${event.clientY}px`;
+    function teleportElementToMouse(element: HTMLElement | null, shift: Vector2D = { x: 0, y: 0 }): void {
+        if (element === null) {
+            return;
         }
-    });
+
+        element.style.left = `${get(mouse.x) + shift.x - window.scrollX}px`;
+        element.style.top = `${get(mouse.y) + shift.y - window.scrollY}px`;
+    }
+
+    if (servicesEl === null) {
+        throw new Error("#services block is not in DOM.");
+    }
+
+    function updateMouseElements(): void {
+        console.log("@@", window.scrollX, window.scrollY, mouse.x.value, mouse.y.value);
+
+        teleportElementToMouse(cursorEl);
+
+        serviceImageEls.forEach(serviceImage => {
+            teleportElementToMouse(serviceImage, {
+                x: servicesEl?.clientLeft,
+                y: servicesEl?.clientTop,
+            });
+        });
+    }
+
+
+    setInterval(updateMouseElements, 20);
 
     gsap.registerPlugin(ScrollTrigger);
 
-    ScrollTrigger.batch(".project__topic-pill", {
-        onEnter: targets => gsap.from(targets, {
+    gsap.utils.toArray("h1, h2:not(#last__heading), h3, h4, h5, h6").forEach(header => {
+        gsap.from(header, {
+            alpha: 0.00,
+            opacity: 0.00,
+            delay: 0.300,
             x: -30,
-            opacity: 0,
-            duration: 0.575,
-            stagger: 0.100,
-        }),
+            scrollTrigger: {
+                trigger: header,
+                toggleActions: "restart none none none",
+            }
+        });
+    });
+
+    gsap.utils.toArray(".services__service-name").forEach(serviceNameEl => {
+        gsap.from(serviceNameEl, {
+            alpha: 0.00,
+            x: -30,
+            scrollTrigger: {
+                trigger: serviceNameEl,
+                toggleActions: "restart none none none",
+            }
+        })
     });
 
     gsap.to("#hero__image", {
@@ -39,10 +112,19 @@ onMounted((): void => {
         }
     });
 
+    gsap.to("#hero__heading-pill-play", {
+        xPercent: 100,
+        scrollTrigger: {
+            trigger: "#hero__heading-pill-play",
+            scrub: true,
+            start: "center center",
+            end: "center end",
+        }
+    });
+
     gsap.utils.toArray(".project__tile").forEach(tile => {
         gsap.to(tile as HTMLElement, {
             duration: 0.575,
-            stagger: 0.100,
             backgroundPositionX: 50,
             backgroundPositionY: 50,
             scrollTrigger: {
@@ -50,6 +132,15 @@ onMounted((): void => {
                 trigger: tile,
             }
         });
+    });
+
+    ScrollTrigger.batch(".project__topic-pill", {
+        onEnter: targets => gsap.from(targets, {
+            x: -30,
+            opacity: 0,
+            duration: 0.575,
+            stagger: 0.100,
+        }),
     });
 });
 </script>
@@ -118,7 +209,7 @@ onMounted((): void => {
                 </h2>
 
                 <div id="services__service-pill-tray">
-                    <div class="services__service-pill" v-for="serviceName in ['Дизайн', 'Сайты', 'Цифровой маркетинг', 'SEO']">
+                    <div class="services__service-pill" v-for="(serviceName, index) in ['Дизайн', 'Сайты', 'Цифровой маркетинг', 'SEO']" :style="`--index: ${index};`">
                         <GlobeIcon class="services__service-pill-icon"></GlobeIcon>
                         <span class="services__service-pill-name">{{ serviceName }}</span>
                     </div>
@@ -134,13 +225,17 @@ onMounted((): void => {
             <div id="services__stars">
                 <StarIcon class="services__star-icon" v-for="_ in 3"></StarIcon>
             </div>
-
             <div id="services__service-list">
-                <div class="services__service" v-for="serviceName in ['Разработка сайтов', 'Web-дизайн', 'Брендирование', 'SEO']">
-                    <span class="services__service-name">{{ serviceName }}</span>
-                    <span class="services__service-circle"></span>
-                    <ArrowIcon class="services__service-icon"></ArrowIcon>
-                </div>
+                <template v-for="{name, slug} in services">
+                    <div class="services__service">
+                        <span class="services__service-name">{{ name }}</span>
+                        <span class="services__service-circle"></span>
+                        <div class="services__service-arrow">
+                            <ArrowIcon class="services__service-arrow-icon"></ArrowIcon>
+                        </div>
+                    </div>
+                    <img class="services__service-image" :src="`/shifjuchkin-studio/images/services/${slug}.jpg`" alt="">
+                </template>
             </div>
         </section>
 
@@ -197,7 +292,6 @@ onMounted((): void => {
                 <div class="project__tile"></div>
                 <div class="project__tile"></div>
                 <div class="project__tile">
-
                     <div id="project__project-tile">
                         <div id="project__tile-arrow">
                             <ArrowIcon id="project__tile-arrow-icon"></ArrowIcon>
@@ -230,7 +324,7 @@ onMounted((): void => {
 
             <div id="footer__link-tray">
                 <a href="#" class="footer__link">Политика конф.</a>
-                <span class="footer__copyright">2024 SHVCH. Все права защищены</span>
+                <span class="footer__copyright">&copy; 2024 SHVCH. Все права защищены</span>
                 <NuxtLink href="/" class="footer__link">Обратно в галерею</NuxtLink>
             </div>
         </footer>
@@ -241,6 +335,7 @@ onMounted((): void => {
 <style scoped lang="sass">
 $tennis: #CFF73E
 $salad: #B9E02B
+$bright: #FEFEFE
 $light: #C3C3C3
 $smoke: #999999
 $gray: #4D4D4D
@@ -279,9 +374,10 @@ button, a
     cursor: pointer
 
 #shfch-studio
-    cursor: none
+    position: relative
 
 #cursor
+    display: none
     position: fixed
     transform: translateX(-50%) translateY(-50%)
     width: 1rem
@@ -326,7 +422,7 @@ button, a
 #hero__heading-pill
     border-radius: 10000px
     background-image: url("/shifjuchkin-studio/images/hero-pill.jpg")
-    display: inline-flex
+    display: flex
     flex-grow: 1
 
 #hero__heading-pill-play
@@ -371,7 +467,7 @@ button, a
     border-top-right-radius: $border-radius
     height: 75lvh
     margin-block-start: 4rem
-    background-position-y: 70%
+    background-position-y: 20%
 
 #hero__image-arrow
     position: absolute
@@ -425,6 +521,7 @@ button, a
 #services
     background: $dark
     padding-block-start: 8rem
+    position: relative
 
 h2
     color: $light
@@ -465,6 +562,15 @@ h2
     justify-content: center
     column-gap: 1rem
     font-size: 1.5rem
+    animation: services__service-pill 2000ms calc(var(--index) * 500ms) ease-in-out infinite alternate
+
+@keyframes services__service-pill
+    from
+        opacity: 0.4
+
+    to
+        opacity: 1.0
+        filter: saturate(4.00)
 
 .services__service-pill-icon
     width: 1em
@@ -504,15 +610,74 @@ h2
     justify-content: space-between
     border-bottom: $border
     padding-block: 1em
+    padding-inline: 1em
+    transition: 200ms ease-out
+
+    &:hover
+        background: $gray
+
+        + .services__service-image
+            display: initial
+
+        .services__service-name
+            color: $bright
+
+        .services__service-circle
+            display: initial
+
+        .services__service-arrow
+            background: $tennis
+
+        .services__service-arrow-icon:deep(*)
+            fill: $black
 
     &:first-child
         border-top: $border
+
+.services__service-image
+    $border-radius: 4rem
+    position: fixed
+    display: none
+    z-index: 9500  // Less than for the #cursor
+    width: 16rem
+    border-top-left-radius: $border-radius
+    border-top-right-radius: $border-radius
+    aspect-ratio: 1
+    object-fit: cover
+    filter: drop-shadow(1.5rem 1rem 0 $tennis) blur(1rem)
+    pointer-events: none
+    opacity: 0
+    transform: scale(0)
+    animation: services__service-image--in 150ms ease-out 500ms forwards
+
+@keyframes services__service-image--in
+    to
+        filter: drop-shadow(1.5rem 1rem 0 $tennis)
+        opacity: 1
+        transform: scale(1)
+
+.services__service-circle
+    display: none
+    background: $tennis
+    width: 1rem
+    aspect-ratio: 1
+    border-radius: 10000px
+    margin-right: auto
+    align-self: flex-end
+    margin-block-end: 2rem
+    margin-inline-start: 1rem
 
 .services__service-name
     color: $smoke
     font-weight: 700
 
-.services__service-icon
+.services__service-arrow
+    aspect-ratio: 1
+    padding: 0.5em
+    display: grid
+    place-items: center
+
+.services__service-arrow-icon
     width: 1em
 
     :deep(*)
@@ -633,6 +798,7 @@ h2
     min-width: 0
     min-height: 0
     aspect-ratio: 1
+    box-shadow: 0 0 4rem $dark inset
 
     &:nth-child(1)
         background-position: 20% 50%
@@ -702,6 +868,9 @@ h2
 .last__star-icon
     width: 2rem
 
+    &:nth-child(2)
+        width: 4rem
+
     :deep(*)
         fill: $salad
 
@@ -725,16 +894,27 @@ h2
     padding: 1em 1.5em
     border-radius: 10000px
     font-size: 1.25rem
+    transition: 150ms ease-out
 
 .last__button--primary
     background: $black
     border: none
     color: $tennis
 
+    &:hover
+        background: none
+        border: $black 2px solid
+        color: $black
+
 .last__button--secondary
     background: none
     border: $black 2px solid
     color: $black
+
+    &:hover
+        background: $black
+        border: none
+        color: $tennis
 
 footer
     background: $dark
@@ -758,6 +938,7 @@ footer
     color: $tennis
 
 .footer__link
+    text-transform: uppercase
     text-decoration: none
 
 // -- Font Face Begins From Here --
