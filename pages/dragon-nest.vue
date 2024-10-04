@@ -243,6 +243,7 @@ $dragon-gradient: linear-gradient(to bottom, $berries 0%, $blood 20%, $fire 55%,
     box-sizing: border-box
     font-family: "Avdira", serif
     color: $snow
+    @include debug
 
 *::selection
     background: #77777733
@@ -630,6 +631,9 @@ h2
     .prices__card-image
         height: 300px
 
+    .features__feature-image
+        max-width: 100%
+
     .prices__card:nth-child(1) .prices__card-image
         top: 0
         left: -140px
@@ -689,6 +693,12 @@ h2
     #contacts
         grid-template-columns: 1fr
         grid-template-rows: initial
+
+    .feedback__feedback-text
+        max-width: initial
+
+    .feedback__feedback-image
+        display: none
 
 // -- Font Faces Are Below --
 @font-face
