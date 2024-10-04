@@ -243,6 +243,7 @@ $dragon-gradient: linear-gradient(to bottom, $berries 0%, $blood 20%, $fire 55%,
     box-sizing: border-box
     font-family: "Avdira", serif
     color: $snow
+    @include debug
 
 *::selection
     background: #77777733
@@ -662,6 +663,10 @@ h2
         transform: rotate(22.5deg)
         top: 20px
 
+    #feedback__grid
+        padding-inline: 2rem
+
+
 @media screen and (max-width: 700px)
     h2
         font-size: 2.5rem
@@ -675,7 +680,7 @@ h2
     .events__card-description
         font-size: 1.5rem
 
-@media screen and (max-width: 500px)
+@media screen and (max-width: 600px)
     #events
         padding-inline: 2rem
 
