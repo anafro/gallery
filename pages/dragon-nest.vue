@@ -243,7 +243,6 @@ $dragon-gradient: linear-gradient(to bottom, $berries 0%, $blood 20%, $fire 55%,
     box-sizing: border-box
     font-family: "Avdira", serif
     color: $snow
-    @include debug
 
 *::selection
     background: #77777733
