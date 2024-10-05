@@ -69,10 +69,21 @@ onMounted((): void => {
                 </div>
 
                 <div id="photos__grid">
-                    <img src="/dragon-nest/images/photo-1.jpg" alt="" class="photos__grid-photo">
-                    <img src="/dragon-nest/images/photo-2.jpg" alt="" class="photos__grid-photo">
-                    <img src="/dragon-nest/images/photo-3.jpg" alt="" class="photos__grid-photo">
-                    <img src="/dragon-nest/images/photo-4.jpg" alt="" class="photos__grid-photo">
+                    <div class="photos__grid-photo-container">
+                        <img src="/dragon-nest/images/photo-1.jpg" alt="" class="photos__grid-photo">
+                    </div>
+
+                    <div class="photos__grid-photo-container">
+                        <img src="/dragon-nest/images/photo-2.jpg" alt="" class="photos__grid-photo">
+                    </div>
+
+                    <div class="photos__grid-photo-container">
+                        <img src="/dragon-nest/images/photo-3.jpg" alt="" class="photos__grid-photo">
+                    </div>
+
+                    <div class="photos__grid-photo-container">
+                        <img src="/dragon-nest/images/photo-4.jpg" alt="" class="photos__grid-photo">
+                    </div>
                 </div>
             </section>
 
@@ -82,17 +93,19 @@ onMounted((): void => {
                 <div id="features__grid">
                     <div class="features__feature">
                         <img src="/dragon-nest/images/dragon-with-a-circle.png" alt="dragon-with-a-circle" class="features__feature-image">
-                        <h3 class="features__feature-name">Находимся в центре</h3>
+                        <h3 class="features__feature-name">
+                            Находимся в центре. Семёновская 9
+                        </h3>
                     </div>
 
                     <div class="features__feature">
                         <img src="/dragon-nest/images/dragon-nest-area.png" alt="dragon-nest-area" class="features__feature-image">
-                        <h3 class="features__feature-name">25 м2</h3>
+                        <h3 class="features__feature-name">50 м2</h3>
                     </div>
 
                     <div class="features__feature">
                         <img src="/dragon-nest/images/dragon-projector.png" alt="dragon-projector" class="features__feature-image">
-                        <h3 class="features__feature-name">Проектор</h3>
+                        <h3 class="features__feature-name">Большой зал и проектор</h3>
                     </div>
 
                     <div class="features__feature">
@@ -150,6 +163,8 @@ onMounted((): void => {
                             <span class="prices__card-week-day">После 20:00</span>
                             <span class="prices__card-week-day-price">1 час = 1900 руб</span>
                         </div>
+
+                        <a href="https://t.me/gnesvdk" class="prices__card-button">Записаться</a>
                     </div>
                 </div>
             </section>
@@ -233,8 +248,9 @@ $lava: #FF9028
 $snow: #FFFFFF
 $magma: #F19152
 $wood: #EFB37E
+$pyramid: #FFCE97
 $coal: #000000
-$dragon-gradient: linear-gradient(to bottom, $berries 0%, $blood 20%, $fire 55%, $lava 90%)
+$dragon-gradient: linear-gradient(to bottom, $berries 0%, $blood 20%, $fire 55%, $blood 90%)
 
 #dragon-nest
     background-image: $dragon-gradient
@@ -332,14 +348,22 @@ h2
     display: grid
     grid-template-columns: repeat(3, 1fr)
 
-.photos__grid-photo
-    object-fit: cover
-    width: 100%
+.photos__grid-photo-container
     height: 24rem
-    opacity: 0.50
+    contain: paint
 
     &:first-child, &:last-child
         grid-column: span 2
+
+.photos__grid-photo
+    object-fit: cover
+    width: 100%
+    height: 100%
+    transition: 450ms ease-out
+
+    &:hover
+        transition: 150ms ease-out
+        transform: scale(1.2)
 
 #features
     padding-inline: 3rem
@@ -402,6 +426,9 @@ h2
 
     &:last-child
         grid-column: span 2
+
+        .prices__card-button
+            margin-block-start: 3rem
 
 .prices__card-image
     position: absolute
@@ -518,7 +545,7 @@ h2
     height: 4rem
 
 .feedback__feedback-text
-    background: $peach
+    background: $pyramid
     color: $coal
     padding: 1.5rem
     border-radius: 1rem
@@ -559,7 +586,7 @@ h2
         margin-block-end: 2rem
 
     #photos__head-photo-image
-        max-width: 100dvw
+        max-width: 70dvw
 
     #features__grid
         grid-template-columns: repeat(2, 1fr)
@@ -606,7 +633,7 @@ h2
         grid-template-rows: repeat(4, 1fr)
         grid-template-columns: 1fr
 
-    .photos__grid-photo
+    .photos__grid-photo-container
         grid-column: span 1 !important
 
     #features__grid
@@ -680,6 +707,18 @@ h2
         font-size: 2.25rem
 
     .events__card-description
+        font-size: 1.5rem
+
+    .prices__card
+        padding-inline: 2rem
+
+    .prices__card-heading
+        font-size: 2.25rem
+
+    .prices__card-description, .prices__card-week-day, .prices__card-week-day-price
+        font-size: 1.75rem
+
+    .prices__card-button
         font-size: 1.5rem
 
 @media screen and (max-width: 600px)
