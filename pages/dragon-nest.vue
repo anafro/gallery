@@ -29,35 +29,35 @@ onMounted((): void => {
             <section id="events">
                 <h2 id="events__heading">Ближайшие события</h2>
                 <div id="events__cards">
-                    <div class="events__card">
+                    <a href="https://vk.com/@gnesvdk-tarify?anchor=snyat-vs-pomeschenie-dlya-prazdnikov-ili-krupnykh-meropriaty" class="events__card">
                         <div class="events__card-image">
                             <h3 class="events__card-name">Событие №1</h3>
                         </div>
 
                         <p class="events__card-description">
-                            Точно взбудоражит ваше сознание
+                            Проведи тут своё день рождение или лекцию
                         </p>
-                    </div>
+                    </a>
 
-                    <div class="events__card">
+                    <a href="https://vk.com/@gnesvdk-gotovoe-mesto-dlya-rolevyh-igr" class="events__card">
                         <div class="events__card-image">
                             <h3 class="events__card-name">Событие №2</h3>
                         </div>
 
                         <p class="events__card-description">
-                            Точно взбудоражит ваше сознание
+                            "Подземелье и драконы" и другие игры
                         </p>
-                    </div>
+                    </a>
 
-                    <div class="events__card">
+                    <a href="https://t.me/gnesvdk" class="events__card">
                         <div class="events__card-image">
                             <h3 class="events__card-name">Событие №3</h3>
                         </div>
 
                         <p class="events__card-description">
-                            Точно взбудоражит ваше сознание
+                            Мафия, квартирники, игротеки и кинопоказы каждую неделю
                         </p>
-                    </div>
+                    </a>
                 </div>
             </section>
 
@@ -151,7 +151,7 @@ onMounted((): void => {
                         <h3 class="prices__card-heading">Аренда помещения</h3>
                         <div class="prices__card-week-day-line">
                             <span class="prices__card-week-day">Будни</span>
-                            <span class="prices__card-week-day-price">1 час = 950 руб</span>
+                            <span class="prices__card-week-day-price">1 час = 1300 руб</span>
                         </div>
 
                         <div class="prices__card-week-day-line">
@@ -300,6 +300,8 @@ h2
     background: $strawberry-cocktail
     border-radius: 1rem
     contain: paint
+    flex: 1
+    text-decoration: none
 
     &:nth-child(1) .events__card-image
         background-image: url("/dragon-nest/images/event-1.jpg")
@@ -343,6 +345,9 @@ h2
     position: absolute
     bottom: 6rch
     left: 36rch
+
+#photos__head-nest-image
+    visibility: hidden
 
 #photos__grid
     display: grid
@@ -574,7 +579,7 @@ h2
         padding-inline: min(10dvw, 16rem)
 
     #photos__head
-        flex-direction: column
+        margin-block-start: 18rem
 
     #photos__head-nest-image
         display: none
@@ -582,11 +587,14 @@ h2
     #photos__heading
         position: initial
         margin-inline-start: 4rem
-        margin-block-start: 4rem
+        margin-block-start: auto
         margin-block-end: 2rem
 
     #photos__head-photo-image
         max-width: 70dvw
+        position: absolute
+        bottom: 0
+        right: 0
 
     #features__grid
         grid-template-columns: repeat(2, 1fr)
