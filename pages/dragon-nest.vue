@@ -160,7 +160,7 @@ onMounted((): void => {
         transform: "scale(0.9)",
         ease: "elastic.out",
         scrollTrigger: {
-            trigger: ".prices__card:nth-child(2)",
+            trigger: ".prices__card:nth-child(3)",
             toggleActions: "restart none none none",
         }
     });
@@ -922,6 +922,9 @@ h2
         font-size: 1.5rem
 
 @media screen and (max-width: 600px)
+    #photos__head-photo-image
+        display: none
+
     #events
         padding-inline: 2rem
 
