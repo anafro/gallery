@@ -50,7 +50,7 @@ onMounted((): void => {
             ease: "back.out(1.7)",
             scrollTrigger: {
                 trigger: h2,
-                toggleActions: "restart none restart none",
+                toggleActions: "restart none none none",
             }
         });
     });
@@ -152,22 +152,16 @@ onMounted((): void => {
         }
     });
 
-    gsap.to(".prices__card:nth-child(3)", {
-        keyframes: {
-            "0%": {
-                y: 200,
-                alpha: 0,
-            },
-
-            "10%": {
-                y: 0,
-                alpha: 1,
-            }
-        },
-
+    gsap.from(".prices__card:nth-child(3)", {
+        rotate: -7,
+        duration: 1.800,
+        delay: 0.300,
+        alpha: 0,
+        transform: "scale(0.9)",
+        ease: "elastic.out",
         scrollTrigger: {
-            trigger: ".prices__card:nth-child(3)",
-            scrub: true,
+            trigger: ".prices__card:nth-child(2)",
+            toggleActions: "restart none none none",
         }
     });
 });
@@ -668,6 +662,18 @@ h2
     transition: 150ms ease-out
     user-select: none
 
+    &:nth-child(2n):hover
+        rotate: 5deg
+
+    &:nth-child(2n + 1):hover
+        rotate: -5deg
+
+    &:nth-child(2n):active
+        rotate: 3deg
+
+    &:nth-child(2n + 1):active
+        rotate: -3deg
+
     &:hover
         scale: 1.05
 
@@ -760,6 +766,11 @@ h2
         row-gap: 4rem
         padding-inline: min(10dvw, 16rem)
 
+    .events__card
+        &:hover + *, &:hover + * + *, &:has(+ *:hover), &:has(+ * + *:hover)
+            transform: initial
+            opacity: initial
+
     #photos__head
         margin-block-start: 18rem
 
@@ -817,7 +828,6 @@ h2
 
     #photos__heading
         text-align: center
-        margin-inline-start: 0
 
     #photos__grid
         grid-template-rows: repeat(4, 1fr)
