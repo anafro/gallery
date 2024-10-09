@@ -1,5 +1,8 @@
 <script setup lang="ts">
+
+import gsap from "gsap";
 import GalleryPageTemplate from "~/components/templates/GalleryPageTemplate.vue";
+import {ScrollTrigger} from "gsap/ScrollTrigger";
 
 onMounted((): void => {
     const ymaps = window.ymaps;
@@ -16,6 +19,157 @@ onMounted((): void => {
             map.geoObjects.add(new ymaps.Placemark(coordinates));
         });
     });
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to("#hero", {
+        keyframes: {
+            "70%": {
+                alpha: 1.00,
+                y: 0,
+            },
+
+            "100%": {
+                alpha: 0.00,
+                y: -100,
+            }
+        },
+
+        scrollTrigger: {
+            trigger: "#hero",
+            scrub: true,
+        }
+    })
+
+    gsap.utils.toArray("h2").forEach(h2 => {
+        gsap.from(h2, {
+            x: -60,
+            alpha: 0,
+            duration: 0.800,
+            skewX: -50,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+                trigger: h2,
+                toggleActions: "restart none restart none",
+            }
+        });
+    });
+
+    gsap.utils.toArray(".feedback__feedback:nth-child(2n + 0)").forEach(feedback => {
+        gsap.from(feedback, {
+            x: -60,
+            ease: "back.out(1.7)",
+            duration: 0.800,
+            scrollTrigger: {
+                trigger: feedback,
+                toggleActions: "restart none restart none",
+                scrub: true,
+            }
+        })
+    });
+
+    gsap.utils.toArray(".feedback__feedback:nth-child(2n + 1)").forEach(feedback => {
+        gsap.from(feedback, {
+            x: 60,
+            ease: "back.out(1.7)",
+            duration: 0.800,
+            scrollTrigger: {
+                trigger: feedback,
+                toggleActions: "restart none restart none",
+                scrub: true,
+            }
+        })
+    });
+
+    gsap.from("#photos__head-photo-image", {
+        x: 100,
+        alpha: 0,
+        duration: 1.200,
+        ease: "power1.out",
+        scrollTrigger: {
+            trigger: "#photos__head-photo-image",
+            toggleActions: "restart none restart none",
+        }
+    });
+
+    gsap.to("#photos__grid", {
+        keyframes: {
+            "0%": {
+                transform: "scale(1.03)",
+            },
+
+            "50%": {
+                transform: "scale(1)",
+            },
+
+            "100%": {
+                transform: "scale(1.03)",
+            },
+        },
+
+        scrollTrigger: {
+            trigger: "#photos__grid",
+            scrub: true,
+        }
+    });
+
+    gsap.utils.toArray(".features__feature").forEach(feature => {
+        gsap.from(feature, {
+            y: 60,
+            ease: "back.out(1.7)",
+            duration: 0.800,
+            scrollTrigger: {
+                trigger: feature,
+                toggleActions: "restart none restart none",
+            }
+        })
+    });
+
+    gsap.from(".prices__card:nth-child(1)", {
+        x: -60,
+        rotate: -30,
+        duration: 1.500,
+        alpha: 0,
+        transform: "scale(0.8)",
+        ease: "elastic.out",
+        scrollTrigger: {
+            trigger: ".prices__card:nth-child(1)",
+            toggleActions: "restart none none none",
+        }
+    });
+
+    gsap.from(".prices__card:nth-child(2)", {
+        x: 60,
+        rotate: 5,
+        duration: 1.500,
+        delay: 0.200,
+        alpha: 0,
+        transform: "scale(0.8)",
+        ease: "elastic.out",
+        scrollTrigger: {
+            trigger: ".prices__card:nth-child(2)",
+            toggleActions: "restart none none none",
+        }
+    });
+
+    gsap.to(".prices__card:nth-child(3)", {
+        keyframes: {
+            "0%": {
+                y: 200,
+                alpha: 0,
+            },
+
+            "10%": {
+                y: 0,
+                alpha: 1,
+            }
+        },
+
+        scrollTrigger: {
+            trigger: ".prices__card:nth-child(3)",
+            scrub: true,
+        }
+    });
 });
 </script>
 
@@ -30,9 +184,7 @@ onMounted((): void => {
                 <h2 id="events__heading">Ближайшие события</h2>
                 <div id="events__cards">
                     <a href="https://vk.com/@gnesvdk-tarify?anchor=snyat-vs-pomeschenie-dlya-prazdnikov-ili-krupnykh-meropriaty" class="events__card">
-                        <div class="events__card-image">
-                            <h3 class="events__card-name">Событие №1</h3>
-                        </div>
+                        <img class="events__card-image" src="/dragon-nest/images/event-1.jpg" alt="">
 
                         <p class="events__card-description">
                             Проведи тут своё день рождение или лекцию
@@ -40,9 +192,7 @@ onMounted((): void => {
                     </a>
 
                     <a href="https://vk.com/@gnesvdk-gotovoe-mesto-dlya-rolevyh-igr" class="events__card">
-                        <div class="events__card-image">
-                            <h3 class="events__card-name">Событие №2</h3>
-                        </div>
+                        <img class="events__card-image" src="/dragon-nest/images/event-2.jpg" alt="">
 
                         <p class="events__card-description">
                             "Подземелье и драконы" и другие игры
@@ -50,9 +200,7 @@ onMounted((): void => {
                     </a>
 
                     <a href="https://t.me/gnesvdk" class="events__card">
-                        <div class="events__card-image">
-                            <h3 class="events__card-name">Событие №3</h3>
-                        </div>
+                        <img class="events__card-image" src="/dragon-nest/images/event-3.jpg" alt="">
 
                         <p class="events__card-description">
                             Мафия, квартирники, игротеки и кинопоказы каждую неделю
@@ -132,7 +280,7 @@ onMounted((): void => {
                             max 300 руб
                         </p>
 
-                        <a href="https://t.me/gnesvdk" class="prices__card-button">Записаться</a>
+                        <a href="https://t.me/gnezdo_ls" class="prices__card-button">Записаться</a>
                     </div>
 
                     <div class="prices__card">
@@ -144,7 +292,7 @@ onMounted((): void => {
                             max 500 руб
                         </p>
 
-                        <a href="https://t.me/gnesvdk" class="prices__card-button">Записаться</a>
+                        <a href="https://t.me/gnezdo_ls" class="prices__card-button">Записаться</a>
                     </div>
 
                     <div class="prices__card">
@@ -164,7 +312,7 @@ onMounted((): void => {
                             <span class="prices__card-week-day-price">1 час = 1900 руб</span>
                         </div>
 
-                        <a href="https://t.me/gnesvdk" class="prices__card-button">Записаться</a>
+                        <a href="https://t.me/gnezdo_ls" class="prices__card-button">Записаться</a>
                     </div>
                 </div>
             </section>
@@ -254,6 +402,7 @@ $dragon-gradient: linear-gradient(to bottom, $berries 0%, $blood 20%, $fire 55%,
 
 #dragon-nest
     background-image: $dragon-gradient
+    contain: paint
 
 *, *::before, *::after
     box-sizing: border-box
@@ -295,6 +444,8 @@ h2
     justify-content: space-between
     column-gap: 6rem
     margin-block-start: 3rem
+    transform-style: preserve-3d
+    transform: perspective(1000px)
 
 .events__card
     background: $strawberry-cocktail
@@ -302,22 +453,34 @@ h2
     contain: paint
     flex: 1
     text-decoration: none
+    transition: 350ms cubic-bezier(.31,1.36,.32,.99)
 
-    &:nth-child(1) .events__card-image
-        background-image: url("/dragon-nest/images/event-1.jpg")
+    &:hover
+        transform: translateZ(3rem)
+        outline: transparentize($strawberry-cocktail, 0.80) 1rem solid
+        filter: brightness(120%)
 
-    &:nth-child(2) .events__card-image
-        background-image: url("/dragon-nest/images/event-2.jpg")
+    &:hover + *
+        transform: translateZ(2.5rem) rotateY(5deg)
+        opacity: 0.4
 
-    &:nth-child(3) .events__card-image
-        background-image: url("/dragon-nest/images/event-3.jpg")
+    &:hover + * + *
+        transform: translateZ(-4.5rem) rotateY(15deg)
+        opacity: 0.4
+
+    &:has(+ *:hover)
+        transform: translateZ(2.5rem) rotateY(-5deg)
+        opacity: 0.4
+
+    &:has(+ * + *:hover)
+        transform: translateZ(-4.5rem) rotateY(-15deg)
+        opacity: 0.4
 
 .events__card-image
-    background-size: cover
-    background-position: 20% 50%
-    padding-block-start: 12rem
-    padding-inline: 1rem
-    padding-block-end: 0.5rem
+    object-fit: cover
+    object-position: 20% 50%
+    width: 100%
+    height: 28rem
 
 .events__card-name
     text-transform: uppercase
@@ -345,6 +508,7 @@ h2
     position: absolute
     bottom: 6rch
     left: 36rch
+    z-index: 10
 
 #photos__head-nest-image
     visibility: hidden
@@ -352,6 +516,7 @@ h2
 #photos__grid
     display: grid
     grid-template-columns: repeat(3, 1fr)
+    z-index: 10
 
 .photos__grid-photo-container
     height: 24rem
@@ -458,6 +623,15 @@ h2
     border-radius: 0.5rem
     font-weight: 1000
     text-decoration: none
+    transition: 150ms ease-out
+
+    &:hover
+        scale: 1.050
+        filter: brightness(120%)
+
+    &:active
+        scale: 1.025
+        filter: brightness(130%)
 
 .prices__card-week-day-line
     display: flex
@@ -491,6 +665,14 @@ h2
     text-decoration: none
     align-items: center
     justify-content: space-between
+    transition: 150ms ease-out
+    user-select: none
+
+    &:hover
+        scale: 1.05
+
+    &:active
+        scale: 1.025
 
 .contacts__contact-image
     width: 100%
